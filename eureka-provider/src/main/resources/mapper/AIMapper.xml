@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snow.eurekaprovider.v_ai.mapper.AIMapper" >
+  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_ai.model.AI" >
+    <constructor >
+      <idArg column="ai_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ai_keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ai_respones" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ai_id, ai_keyword, ai_respones
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_AI
+    where ai_id = #{aiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_AI
+    where ai_id = #{aiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
+    insert into tb_AI (ai_id, ai_keyword, ai_respones
+      )
+    values (#{aiId,jdbcType=INTEGER}, #{aiKeyword,jdbcType=VARCHAR}, #{aiRespones,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
+    insert into tb_AI
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aiId != null" >
+        ai_id,
+      </if>
+      <if test="aiKeyword != null" >
+        ai_keyword,
+      </if>
+      <if test="aiRespones != null" >
+        ai_respones,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aiId != null" >
+        #{aiId,jdbcType=INTEGER},
+      </if>
+      <if test="aiKeyword != null" >
+        #{aiKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="aiRespones != null" >
+        #{aiRespones,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
+    update tb_AI
+    <set >
+      <if test="aiKeyword != null" >
+        ai_keyword = #{aiKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="aiRespones != null" >
+        ai_respones = #{aiRespones,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ai_id = #{aiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
+    update tb_AI
+    set ai_keyword = #{aiKeyword,jdbcType=VARCHAR},
+      ai_respones = #{aiRespones,jdbcType=VARCHAR}
+    where ai_id = #{aiId,jdbcType=INTEGER}
+  </update>
+</mapper>
