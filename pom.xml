@@ -37,10 +37,15 @@
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
-
+<!--eureka服务框架-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    </dependency>
+<!--feign远程调用-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
     <dependency>
