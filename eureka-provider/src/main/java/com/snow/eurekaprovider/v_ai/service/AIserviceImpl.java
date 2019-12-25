@@ -5,6 +5,8 @@ import com.snow.eurekaprovider.v_ai.model.AI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AIserviceImpl implements IAIservice {
 
@@ -13,17 +15,12 @@ public class AIserviceImpl implements IAIservice {
 
     @Override
     public int deleteByPrimaryKey(Integer aiId) {
-        return 0;
+        return aiMapper.deleteByPrimaryKey(aiId);
     }
 
     @Override
-    public int insert(AI record) {
-        return 0;
-    }
-
-    @Override
-    public int insertSelective(AI record) {
-        return 0;
+    public int insert(AI ai) {
+        return aiMapper.insertSelective(ai);
     }
 
     @Override
@@ -31,13 +28,17 @@ public class AIserviceImpl implements IAIservice {
         return aiMapper.selectByPrimaryKey(aiId);
     }
 
+
+
     @Override
-    public int updateByPrimaryKeySelective(AI record) {
-        return 0;
+    public List<AI> load(AI ai) {
+        return aiMapper.load(ai);
     }
 
     @Override
-    public int updateByPrimaryKey(AI record) {
-        return 0;
+    public int updateByPrimaryKey(AI ai) {
+        return aiMapper.updateByPrimaryKeySelective(ai);
     }
+
+
 }

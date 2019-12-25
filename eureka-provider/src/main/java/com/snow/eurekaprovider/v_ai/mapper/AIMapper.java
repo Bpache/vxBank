@@ -3,11 +3,12 @@ package com.snow.eurekaprovider.v_ai.mapper;
 import com.snow.eurekaprovider.v_ai.model.AI;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+
 @Mapper
 public interface AIMapper {
     int deleteByPrimaryKey(Integer aiId);
-
-    int insert(AI record);
 
     int insertSelective(AI record);
 
@@ -15,5 +16,6 @@ public interface AIMapper {
 
     int updateByPrimaryKeySelective(AI record);
 
-    int updateByPrimaryKey(AI record);
+    List<AI> load(AI record);
+
 }
