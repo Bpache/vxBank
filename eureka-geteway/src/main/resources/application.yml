@@ -1,0 +1,19 @@
+server:
+  port: 7401
+spring:
+  application:
+    name: geteway
+#����Zuul·�ɹ���
+zuul:
+  routes:
+    #��zuul�����ģ��
+    api-cons:
+      #ģ�����·��
+      path: /cons/**
+      #��������
+      serviceId: eureka-consumer
+#��ע�����Ľ���ע��
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:7101/eureka/
