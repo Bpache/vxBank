@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snow.eurekaprovider.v_statis.mapper.WxMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Accno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Menuname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Subname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="clickrate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Seqno" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Menukey" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Summary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Operato" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Opertime" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="State" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Isupdate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Uptime" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Upstate" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="click" type="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+      <id column="id" property="id" />
+      <result column="Accno" property="accno"/>
+      <result column="Menuname" property="menuname"/>
+      <result column="Subname" property="subname" />
+      <result column="clickrate" property="clickrate"  />
+      <result column="Seqno" property="seqno" />
+      <result column="Menukey" property="menukey"/>
+      <result column="Summary" property="summary" />
+      <result column="Operato" property="operato" />
+      <result column="Opertime" property="opertime" />
+      <result column="State" property="state" />
+      <result column="Isupdate" property="isupdate"/>
+      <result column="Uptime" property="uptime" />
+      <result column="Upstate" property="upstate"/>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, Accno, Menuname, Subname, clickrate, Seqno, Menukey, Summary, Operato, Opertime, 
+    State, Isupdate, Uptime, Upstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wx_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getClick"  resultMap="click" parameterType="java.lang.String" >
+    select Subname,clickrate from tb_wx_menu
+    where Subname = #{subname,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getClickByName" resultMap="click" parameterType="java.lang.String" >
+    select Menuname,Subname,clickrate from tb_wx_menu
+    where Menuname = #{menuname,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_wx_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+    insert into tb_wx_menu (id, Accno, Menuname, 
+      Subname, clickrate, Seqno, 
+      Menukey, Summary, Operato, 
+      Opertime, State, Isupdate, 
+      Uptime, Upstate)
+    values (#{id,jdbcType=INTEGER}, #{accno,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, 
+      #{subname,jdbcType=VARCHAR}, #{clickrate,jdbcType=INTEGER}, #{seqno,jdbcType=INTEGER}, 
+      #{menukey,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{operato,jdbcType=VARCHAR}, 
+      #{opertime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{isupdate,jdbcType=VARCHAR}, 
+      #{uptime,jdbcType=VARCHAR}, #{upstate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+    insert into tb_wx_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="accno != null" >
+        Accno,
+      </if>
+      <if test="menuname != null" >
+        Menuname,
+      </if>
+      <if test="subname != null" >
+        Subname,
+      </if>
+      <if test="clickrate != null" >
+        clickrate,
+      </if>
+      <if test="seqno != null" >
+        Seqno,
+      </if>
+      <if test="menukey != null" >
+        Menukey,
+      </if>
+      <if test="summary != null" >
+        Summary,
+      </if>
+      <if test="operato != null" >
+        Operato,
+      </if>
+      <if test="opertime != null" >
+        Opertime,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="isupdate != null" >
+        Isupdate,
+      </if>
+      <if test="uptime != null" >
+        Uptime,
+      </if>
+      <if test="upstate != null" >
+        Upstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accno != null" >
+        #{accno,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="subname != null" >
+        #{subname,jdbcType=VARCHAR},
+      </if>
+      <if test="clickrate != null" >
+        #{clickrate,jdbcType=INTEGER},
+      </if>
+      <if test="seqno != null" >
+        #{seqno,jdbcType=INTEGER},
+      </if>
+      <if test="menukey != null" >
+        #{menukey,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="operato != null" >
+        #{operato,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null" >
+        #{opertime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isupdate != null" >
+        #{isupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null" >
+        #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="upstate != null" >
+        #{upstate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+    update tb_wx_menu
+    <set >
+      <if test="accno != null" >
+        Accno = #{accno,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null" >
+        Menuname = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="subname != null" >
+        Subname = #{subname,jdbcType=VARCHAR},
+      </if>
+      <if test="clickrate != null" >
+        clickrate = #{clickrate,jdbcType=INTEGER},
+      </if>
+      <if test="seqno != null" >
+        Seqno = #{seqno,jdbcType=INTEGER},
+      </if>
+      <if test="menukey != null" >
+        Menukey = #{menukey,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        Summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="operato != null" >
+        Operato = #{operato,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null" >
+        Opertime = #{opertime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isupdate != null" >
+        Isupdate = #{isupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null" >
+        Uptime = #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="upstate != null" >
+        Upstate = #{upstate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+    update tb_wx_menu
+    set Accno = #{accno,jdbcType=VARCHAR},
+      Menuname = #{menuname,jdbcType=VARCHAR},
+      Subname = #{subname,jdbcType=VARCHAR},
+      clickrate = #{clickrate,jdbcType=INTEGER},
+      Seqno = #{seqno,jdbcType=INTEGER},
+      Menukey = #{menukey,jdbcType=VARCHAR},
+      Summary = #{summary,jdbcType=VARCHAR},
+      Operato = #{operato,jdbcType=VARCHAR},
+      Opertime = #{opertime,jdbcType=VARCHAR},
+      State = #{state,jdbcType=VARCHAR},
+      Isupdate = #{isupdate,jdbcType=VARCHAR},
+      Uptime = #{uptime,jdbcType=VARCHAR},
+      Upstate = #{upstate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateClick" parameterType="com.snow.eurekaprovider.v_statis.model.WxMenu" >
+    update tb_wx_menu set clickrate = #{clickrate,jdbcType=INTEGER}
+    where Subname = #{subname,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
