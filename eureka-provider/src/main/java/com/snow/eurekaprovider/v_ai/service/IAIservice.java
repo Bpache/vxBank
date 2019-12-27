@@ -3,6 +3,8 @@ package com.snow.eurekaprovider.v_ai.service;
 import com.snow.eurekaprovider.v_ai.model.AI;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public interface IAIservice {
 
@@ -10,11 +12,9 @@ public interface IAIservice {
 
     int insert(AI record);
 
-    int insertSelective(AI record);
-
     AI selectByPrimaryKey(Integer aiId);
 
-    int updateByPrimaryKeySelective(AI record);
-
     int updateByPrimaryKey(AI record);
+
+    List<AI> load(AI record);
 }
