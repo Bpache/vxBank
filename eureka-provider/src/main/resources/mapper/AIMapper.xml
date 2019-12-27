@@ -1,73 +1,145 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.snow.eurekaprovider.v_ai.mapper.AIMapper" >
-  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_ai.model.AI" >
-    <constructor >
-      <idArg column="ai_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="ai_keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="ai_respones" jdbcType="VARCHAR" javaType="java.lang.String" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snow.eurekaprovider.v_ai.mapper.AIMapper">
+
+
+  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_ai.model.AI">
+    <constructor>
+      <idArg column="ai_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ai_question" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ai_question1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ai_question2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ai_question3" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ai_question4" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ai_question5" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ai_respones" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List" >
-    ai_id, ai_keyword, ai_respones
+
+  <resultMap id="row" type="com.snow.eurekaprovider.v_ai.model.AI">
+    <id column="ai_id" property="aiId" />
+    <result column="ai_question" property="aiQuestion" />
+    <result column="ai_question1"  property="aiQuestion1"  />
+    <result column="ai_question2"  property="aiQuestion2"  />
+    <result column="ai_question3"  property="aiQuestion3"  />
+    <result column="ai_question4"  property="aiQuestion4"  />
+    <result column="ai_question5"  property="aiQuestion5"  />
+    <result column="ai_respones"  property="aiRespones"  />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ai_id, ai_question, ai_question1, ai_question2, ai_question3, ai_question4, ai_question5, 
+    ai_respones
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_AI
     where ai_id = #{aiId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+
+  <select id="load" parameterType="com.snow.eurekaprovider.v_ai.model.AI" resultMap="row">
+    select
+    <include refid="Base_Column_List" />
+    from tb_AI
+    <where>1=1</where>
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_AI
     where ai_id = #{aiId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
-    insert into tb_AI (ai_id, ai_keyword, ai_respones
-      )
-    values (#{aiId,jdbcType=INTEGER}, #{aiKeyword,jdbcType=VARCHAR}, #{aiRespones,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
+
+
+
+  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_ai.model.AI">
     insert into tb_AI
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="aiId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aiId != null">
         ai_id,
       </if>
-      <if test="aiKeyword != null" >
-        ai_keyword,
+      <if test="aiQuestion != null">
+        ai_question,
       </if>
-      <if test="aiRespones != null" >
+      <if test="aiQuestion1 != null">
+        ai_question1,
+      </if>
+      <if test="aiQuestion2 != null">
+        ai_question2,
+      </if>
+      <if test="aiQuestion3 != null">
+        ai_question3,
+      </if>
+      <if test="aiQuestion4 != null">
+        ai_question4,
+      </if>
+      <if test="aiQuestion5 != null">
+        ai_question5,
+      </if>
+      <if test="aiRespones != null">
         ai_respones,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="aiId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aiId != null">
         #{aiId,jdbcType=INTEGER},
       </if>
-      <if test="aiKeyword != null" >
-        #{aiKeyword,jdbcType=VARCHAR},
+      <if test="aiQuestion != null">
+        #{aiQuestion,jdbcType=VARCHAR},
       </if>
-      <if test="aiRespones != null" >
+      <if test="aiQuestion1 != null">
+        #{aiQuestion1,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion2 != null">
+        #{aiQuestion2,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion3 != null">
+        #{aiQuestion3,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion4 != null">
+        #{aiQuestion4,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion5 != null">
+        #{aiQuestion5,jdbcType=VARCHAR},
+      </if>
+      <if test="aiRespones != null">
         #{aiRespones,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_ai.model.AI">
     update tb_AI
-    <set >
-      <if test="aiKeyword != null" >
-        ai_keyword = #{aiKeyword,jdbcType=VARCHAR},
+    <set>
+      <if test="aiQuestion != null">
+        ai_question = #{aiQuestion,jdbcType=VARCHAR},
       </if>
-      <if test="aiRespones != null" >
+      <if test="aiQuestion1 != null">
+        ai_question1 = #{aiQuestion1,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion2 != null">
+        ai_question2 = #{aiQuestion2,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion3 != null">
+        ai_question3 = #{aiQuestion3,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion4 != null">
+        ai_question4 = #{aiQuestion4,jdbcType=VARCHAR},
+      </if>
+      <if test="aiQuestion5 != null">
+        ai_question5 = #{aiQuestion5,jdbcType=VARCHAR},
+      </if>
+      <if test="aiRespones != null">
         ai_respones = #{aiRespones,jdbcType=VARCHAR},
       </if>
     </set>
     where ai_id = #{aiId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_ai.model.AI" >
-    update tb_AI
-    set ai_keyword = #{aiKeyword,jdbcType=VARCHAR},
-      ai_respones = #{aiRespones,jdbcType=VARCHAR}
-    where ai_id = #{aiId,jdbcType=INTEGER}
-  </update>
+
+
 </mapper>
