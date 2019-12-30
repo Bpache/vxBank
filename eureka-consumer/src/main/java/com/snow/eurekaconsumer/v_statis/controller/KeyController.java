@@ -13,9 +13,7 @@ public class KeyController {
     private StatisFeigin statisFeigin;
 
     @RequestMapping("/keylist")
-    public String keylist(Keyword keyword, @RequestParam int page,@RequestParam int rows){
-        keyword.setPageNum(page);
-        keyword.setKeySum(rows);
+    public String keylist(Keyword keyword){
         String list = statisFeigin.keyList(keyword);
         return list;
     }

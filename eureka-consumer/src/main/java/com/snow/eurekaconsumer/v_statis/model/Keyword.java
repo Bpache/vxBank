@@ -1,17 +1,19 @@
 package com.snow.eurekaconsumer.v_statis.model;
 
-import com.snow.eurekaconsumer.util.PageModel;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 @ToString
 @Component
-public class Keyword extends PageModel {
+public class Keyword{
     private Integer kid;
 
     private String keyName;
 
     private Integer keySum;
+
+    private Integer pageNum;//页码
+    private Integer pageSize;//每页显示条数
 
     public Keyword(Integer kid, String keyName, Integer keySum) {
         this.kid = kid;
@@ -45,5 +47,21 @@ public class Keyword extends PageModel {
 
     public void setKeySum(Integer keySum) {
         this.keySum = keySum;
+    }
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }
