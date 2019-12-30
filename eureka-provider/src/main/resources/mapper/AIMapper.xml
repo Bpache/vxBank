@@ -45,6 +45,12 @@
     <include refid="Base_Column_List" />
     from tb_AI
     <where>1=1</where>
+    and ai_question like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question1 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question2 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question3 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question4 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question5 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
   </select>
 
 
