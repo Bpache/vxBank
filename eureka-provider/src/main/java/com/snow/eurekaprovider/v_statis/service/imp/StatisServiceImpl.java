@@ -38,4 +38,19 @@ public class StatisServiceImpl implements IStatisService {
         PageHelper.startPage(keyword.getPageNum(),keyword.getPageSize());
         return keywordMapper.KeyList(keyword);
     }
+
+    @Override
+    public int addKey(Keyword keyword) {
+        return keywordMapper.insert(keyword);
+    }
+
+    @Override
+    public int updateKeySum(String keyname) {
+        return keywordMapper.update(keyname);
+    }
+
+    @Override
+    public Keyword getByName(String keyname) {
+        return keywordMapper.getByName(keyname);
+    }
 }
