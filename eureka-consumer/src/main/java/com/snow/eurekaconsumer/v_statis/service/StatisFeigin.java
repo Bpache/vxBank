@@ -18,4 +18,7 @@ public interface StatisFeigin {
 
     @RequestMapping("/key/list")
     String keyList(Keyword keyword);
+
+    @RequestMapping("/key/addOrUpdate")
+    String addOrUpdate(Keyword keyword);
 }

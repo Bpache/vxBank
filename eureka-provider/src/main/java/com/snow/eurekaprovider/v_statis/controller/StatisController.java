@@ -1,8 +1,8 @@
 package com.snow.eurekaprovider.v_statis.controller;
 
+import com.snow.eurekaprovider.util.JsonData;
 import com.snow.eurekaprovider.v_statis.model.WxMenu;
 import com.snow.eurekaprovider.v_statis.service.IStatisService;
-import com.snow.vo.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
