@@ -1,13 +1,11 @@
-# 端口号
 server:
   port: 7301
-# 服务名称
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: eureka-consumer
-# 服务注册与发现相关配置
 eureka:
   client:
-    # 注册中心地址
     serviceUrl:
-      defaultZone: http://localhost:7101/eureka/
+      defaultZone: http://peer1:7101/eureka/
