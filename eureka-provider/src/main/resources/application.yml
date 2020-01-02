@@ -7,6 +7,7 @@ spring:
     host: 114.55.29.94
     port: 6379
     database: 0
+    password: 123456
   #jdbc连接
   datasource:
     username: root
