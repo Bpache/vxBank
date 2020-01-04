@@ -6,6 +6,7 @@
       <idArg column="kid" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="key_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="key_sum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
 
@@ -13,10 +14,11 @@
       <id column="kid" property="kid" />
       <result column="key_name" property="keyName"/>
       <result column="key_sum" property="keySum"/>
+      <result column="type" property="type"/>
   </resultMap>
 
   <sql id="Base_Column_List" >
-    kid, key_name, key_sum
+    kid, key_name, key_sum,type
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,19 +28,25 @@
   </select>
 
   <select id="KeyList" resultMap="keylist">
-    SELECT * FROM tb_key ORDER BY key_sum desc
+  SELECT * FROM tb_key where type= #{type,jdbcType=INTEGER} and key_sum>2 ORDER BY key_sum desc
+</select>
+
+  <select id="getByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM tb_key where key_name=#{keyName,jdbcType=VARCHAR}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_key
     where kid = #{kid,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.snow.eurekaprovider.v_statis.model.Keyword" >
-    insert into tb_key (kid, key_name, key_sum
+    insert into tb_key (kid, key_name, key_sum,type
       )
-    values (#{kid,jdbcType=INTEGER}, #{keyName,jdbcType=VARCHAR}, #{keySum,jdbcType=INTEGER}
+    values (#{kid,jdbcType=INTEGER}, #{keyName,jdbcType=VARCHAR}, #{keySum,jdbcType=INTEGER}, #{type ,jdbcType=INTEGER}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_statis.model.Keyword" >
     insert into tb_key
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -51,6 +59,9 @@
       <if test="keySum != null" >
         key_sum,
       </if>
+      <if test="type != null" >
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="kid != null" >
@@ -62,8 +73,16 @@
       <if test="keySum != null" >
         #{keySum,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
+
+  <update id="update" parameterType="com.snow.eurekaprovider.v_statis.model.Keyword" >
+   UPDATE tb_key set key_sum=key_sum+1 where key_name = #{keyName,jdbcType=VARCHAR}
+  </update>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_statis.model.Keyword" >
     update tb_key
     <set >
@@ -73,13 +92,16 @@
       <if test="keySum != null" >
         key_sum = #{keySum,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
     </set>
     where kid = #{kid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_statis.model.Keyword" >
     update tb_key
     set key_name = #{keyName,jdbcType=VARCHAR},
-      key_sum = #{keySum,jdbcType=INTEGER}
+      key_sum = #{keySum,jdbcType=INTEGER}，type = #{type,jdbcType=INTEGER}
     where kid = #{kid,jdbcType=INTEGER}
   </update>
 </mapper>

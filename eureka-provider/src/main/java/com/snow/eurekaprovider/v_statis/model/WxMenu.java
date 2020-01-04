@@ -1,9 +1,10 @@
 package com.snow.eurekaprovider.v_statis.model;
 
+import lombok.Data;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
-@ToString
+@Data
 @Component
 public class WxMenu {
     private Integer id;

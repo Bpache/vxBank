@@ -2,14 +2,18 @@ package com.snow.eurekaprovider.v_statis.service.imp;
 
 import com.github.pagehelper.PageHelper;
 import com.snow.eurekaprovider.v_statis.mapper.KeywordMapper;
+import com.snow.eurekaprovider.v_statis.mapper.UserMapper;
 import com.snow.eurekaprovider.v_statis.mapper.WxMenuMapper;
 import com.snow.eurekaprovider.v_statis.model.Keyword;
+import com.snow.eurekaprovider.v_statis.model.User;
+import com.snow.eurekaprovider.v_statis.model.UserVo;
 import com.snow.eurekaprovider.v_statis.model.WxMenu;
 import com.snow.eurekaprovider.v_statis.service.IStatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StatisServiceImpl implements IStatisService {
@@ -17,6 +21,8 @@ public class StatisServiceImpl implements IStatisService {
     private WxMenuMapper wxMenuMapper;
     @Autowired
     private KeywordMapper keywordMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public int updateClick(WxMenu wxMenu) {
@@ -52,5 +58,10 @@ public class StatisServiceImpl implements IStatisService {
     @Override
     public Keyword getByName(String keyname) {
         return keywordMapper.getByName(keyname);
+    }
+
+    @Override
+    public  List<Map<String,Object>> userNumber(UserVo userVo) {
+        return userMapper.userNumber(userVo);
     }
 }

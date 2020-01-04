@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snow.eurekaprovider.v_statis.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_statis.model.User" >
+  <constructor >
+    <idArg column="uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="uname" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <arg column="ubind" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="ustate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="udate" jdbcType="DATE" javaType="java.util.Date" />
+  </constructor>
+</resultMap>
+
+
+  <sql id="Base_Column_List" >
+    uid, uname, ubind, ustate, udate
+  </sql>
+
+  <select id="userNumber" resultType="java.util.HashMap" parameterType="com.snow.eurekaprovider.v_statis.model.UserVo">
+    SELECT count(*) userCount,udate,ustate FROM tb_user
+          where udate &gt;= #{start,jdbcType=VARCHAR}
+          and udate &lt;= #{end,jdbcType=VARCHAR}
+          GROUP BY udate,ustate
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.snow.eurekaprovider.v_statis.model.User" >
+    insert into tb_user (uid, uname, ubind, 
+      ustate, udate)
+    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{ubind,jdbcType=INTEGER}, 
+      #{ustate,jdbcType=INTEGER}, #{udate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_statis.model.User" >
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="ubind != null" >
+        ubind,
+      </if>
+      <if test="ustate != null" >
+        ustate,
+      </if>
+      <if test="udate != null" >
+        udate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="ubind != null" >
+        #{ubind,jdbcType=INTEGER},
+      </if>
+      <if test="ustate != null" >
+        #{ustate,jdbcType=INTEGER},
+      </if>
+      <if test="udate != null" >
+        #{udate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_statis.model.User" >
+    update tb_user
+    <set >
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="ubind != null" >
+        ubind = #{ubind,jdbcType=INTEGER},
+      </if>
+      <if test="ustate != null" >
+        ustate = #{ustate,jdbcType=INTEGER},
+      </if>
+      <if test="udate != null" >
+        udate = #{udate,jdbcType=DATE},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_statis.model.User" >
+    update tb_user
+    set uname = #{uname,jdbcType=VARCHAR},
+      ubind = #{ubind,jdbcType=INTEGER},
+      ustate = #{ustate,jdbcType=INTEGER},
+      udate = #{udate,jdbcType=DATE}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>
