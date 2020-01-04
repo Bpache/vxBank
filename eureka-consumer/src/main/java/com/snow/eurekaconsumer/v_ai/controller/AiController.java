@@ -38,4 +38,10 @@ public class AiController {
         return str;
     }
 
+    @RequestMapping("/chat")
+    public String chat(String msg){
+        String str = aiFeign.chat(msg);
+        return str;
+    }
+
 }
