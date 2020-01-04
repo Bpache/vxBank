@@ -15,5 +15,6 @@ public interface IWXActivityService {
 
     int updateByPrimaryKeySelective(WXActivity record);
 
+    @Transactional(readOnly = true)
     List<WXActivity> activityList(WXActivity wxActivity);
 }

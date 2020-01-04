@@ -6,7 +6,7 @@
       <idArg column="act_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="act_info" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="act_date" jdbcType="VARCHAR" javaType="java.util.Date" />
+      <arg column="act_date" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
 
@@ -14,7 +14,7 @@
       <id column="act_id" property="actId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <result column="act_info" property="actInfo" jdbcType="VARCHAR" javaType="java.lang.String" />
       <result column="operato" property="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <result column="act_date" property="actDate" jdbcType="VARCHAR" javaType="java.util.Date" />
+      <result column="act_date" property="actDate" jdbcType="VARCHAR" javaType="java.lang.String" />
   </resultMap>
 
   <sql id="Base_Column_List" >

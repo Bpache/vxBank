@@ -14,9 +14,9 @@ public class WXActivity {
 
     private String operato;
 
-    private Date actDate;
+    private String actDate;
 
-    public WXActivity(Integer actId, String actInfo, String operato, Date actDate) {
+    public WXActivity(Integer actId, String actInfo, String operato, String actDate) {
         this.actId = actId;
         this.actInfo = actInfo;
         this.operato = operato;
@@ -51,11 +51,11 @@ public class WXActivity {
         this.operato = operato == null ? null : operato.trim();
     }
 
-    public Date getActDate() {
+    public String getActDate() {
         return actDate;
     }
 
-    public void setActDate(Date actDate) {
+    public void setActDate(String actDate) {
         this.actDate = actDate;
     }
 }

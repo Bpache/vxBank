@@ -14,9 +14,9 @@ public class WXNotice {
 
     private String operato;
 
-    private Date notiDate;
+    private String notiDate;
 
-    public WXNotice(Integer notiId, String notiInfo, String operato, Date notiDate) {
+    public WXNotice(Integer notiId, String notiInfo, String operato, String notiDate) {
         this.notiId = notiId;
         this.notiInfo = notiInfo;
         this.operato = operato;
@@ -51,11 +51,11 @@ public class WXNotice {
         this.operato = operato == null ? null : operato.trim();
     }
 
-    public Date getNotiDate() {
+    public String getNotiDate() {
         return notiDate;
     }
 
-    public void setNotiDate(Date notiDate) {
+    public void setNotiDate(String notiDate) {
         this.notiDate = notiDate;
     }
 }

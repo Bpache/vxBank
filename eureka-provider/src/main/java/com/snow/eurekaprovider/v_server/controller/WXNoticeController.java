@@ -1,8 +1,8 @@
 package com.snow.eurekaprovider.v_server.controller;
 
 import com.snow.eurekaprovider.util.JsonData;
-import com.snow.eurekaprovider.v_server.model.WXActivity;
-import com.snow.eurekaprovider.v_server.service.IWXActivityService;
+import com.snow.eurekaprovider.v_server.model.WXNotice;
+import com.snow.eurekaprovider.v_server.service.IWXNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,29 +13,29 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/activity")
-public class WXActivityController {
+@RequestMapping("/notice")
+public class WXNoticeController {
 
     @Autowired
-    private IWXActivityService iwxActivityService;
+    private IWXNoticeService noticeService;
 
-    private WXActivity wxActivity;
+    private WXNotice wxNotice;
 
     @RequestMapping("/add")
-    public JsonData activityAdd(@RequestBody String actInfo,@RequestBody String operato) {
-        wxActivity.setActInfo(actInfo);
-        wxActivity.setOperato(operato);
-        iwxActivityService.insertSelective(wxActivity);
+    public JsonData noticeAdd(@RequestBody String notiInfo,@RequestBody String operato) {
+        wxNotice.setNotiInfo(notiInfo);
+        wxNotice.setOperato(operato);
+        noticeService.insertSelective(wxNotice);
         JsonData jsonData = new JsonData();
         jsonData.setMessage("添加成功！");
         return jsonData;
     }
     @RequestMapping("/list")
-    public JsonData activitylist() {
-        List<WXActivity> activities = iwxActivityService.activityList(wxActivity);
+    public JsonData noticelist() {
+        List<WXNotice> wxNotices = noticeService.load(wxNotice);
         JsonData jsonData = new JsonData();
         jsonData.setMessage("查询成功。。。。。。。。。。。。。。");
-        jsonData.setResult(activities);
+        jsonData.setResult(wxNotices);
         return jsonData;
     }
 

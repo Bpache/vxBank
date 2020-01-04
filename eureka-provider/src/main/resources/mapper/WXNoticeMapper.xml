@@ -6,8 +6,14 @@
       <idArg column="noti_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="noti_info" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="noti_date" jdbcType="VARCHAR" javaType="java.util.Date" />
+      <arg column="noti_date" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
+  </resultMap>
+  <resultMap id="Row" type="com.snow.eurekaprovider.v_server.model.WXNotice" >
+      <id column="noti_id" property="notiId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="noti_info" property="notiInfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="operato" property="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="noti_date" property="notiDate" jdbcType="VARCHAR" javaType="java.lang.String" />
   </resultMap>
   <sql id="Base_Column_List" >
     noti_id, noti_info, operato, noti_date
@@ -17,6 +23,12 @@
     <include refid="Base_Column_List" />
     from tb_wx_notice
     where noti_id = #{notiId,jdbcType=INTEGER}
+  </select>
+  <select id="load" resultMap="Row" parameterType="com.snow.eurekaprovider.v_server.model.WXNotice" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_wx_notice
+    where 1=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_wx_notice
