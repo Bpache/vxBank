@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snow.eurekaprovider.v_server.mapper.WXNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_server.model.WXNotice" >
+    <constructor >
+      <idArg column="noti_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="noti_info" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="noti_date" jdbcType="VARCHAR" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    noti_id, noti_info, operato, noti_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wx_notice
+    where noti_id = #{notiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_wx_notice
+    where noti_id = #{notiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.snow.eurekaprovider.v_server.model.WXNotice" >
+    insert into tb_wx_notice (noti_id, noti_info, operato, 
+      noti_date)
+    values (#{notiId,jdbcType=INTEGER}, #{notiInfo,jdbcType=VARCHAR}, #{operato,jdbcType=VARCHAR}, 
+      #{notiDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_server.model.WXNotice" >
+    insert into tb_wx_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="notiId != null" >
+        noti_id,
+      </if>
+      <if test="notiInfo != null" >
+        noti_info,
+      </if>
+      <if test="operato != null" >
+        operato,
+      </if>
+      <if test="notiDate != null" >
+        noti_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="notiId != null" >
+        #{notiId,jdbcType=INTEGER},
+      </if>
+      <if test="notiInfo != null" >
+        #{notiInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operato != null" >
+        #{operato,jdbcType=VARCHAR},
+      </if>
+      <if test="notiDate != null" >
+        #{notiDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_server.model.WXNotice" >
+    update tb_wx_notice
+    <set >
+      <if test="notiInfo != null" >
+        noti_info = #{notiInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operato != null" >
+        operato = #{operato,jdbcType=VARCHAR},
+      </if>
+      <if test="notiDate != null" >
+        noti_date = #{notiDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where noti_id = #{notiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_server.model.WXNotice" >
+    update tb_wx_notice
+    set noti_info = #{notiInfo,jdbcType=VARCHAR},
+      operato = #{operato,jdbcType=VARCHAR},
+      noti_date = #{notiDate,jdbcType=VARCHAR}
+    where noti_id = #{notiId,jdbcType=INTEGER}
+  </update>
+</mapper>

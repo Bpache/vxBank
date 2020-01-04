@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snow.eurekaprovider.v_server.mapper.WXActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_server.model.WXActivity" >
+    <constructor >
+      <idArg column="act_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="act_info" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="act_date" jdbcType="VARCHAR" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="Row" type="com.snow.eurekaprovider.v_server.model.WXActivity" >
+      <id column="act_id" property="actId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="act_info" property="actInfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="operato" property="operato" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="act_date" property="actDate" jdbcType="VARCHAR" javaType="java.util.Date" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    act_id, act_info, operato, act_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wx_activity
+    where act_id = #{actId,jdbcType=INTEGER}
+  </select>
+  <select id="activityList" resultMap="Row" parameterType="com.snow.eurekaprovider.v_server.model.WXActivity" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_wx_activity
+    where 1=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_wx_activity
+    where act_id = #{actId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.snow.eurekaprovider.v_server.model.WXActivity" >
+    insert into tb_wx_activity (act_id, act_info, operato, 
+      act_date)
+    values (#{actId,jdbcType=INTEGER}, #{actInfo,jdbcType=VARCHAR}, #{operato,jdbcType=VARCHAR}, 
+      #{actDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snow.eurekaprovider.v_server.model.WXActivity" >
+    insert into tb_wx_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="actId != null" >
+        act_id,
+      </if>
+      <if test="actInfo != null" >
+        act_info,
+      </if>
+      <if test="operato != null" >
+        operato,
+      </if>
+      <if test="actDate != null" >
+        act_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="actId != null" >
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="actInfo != null" >
+        #{actInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operato != null" >
+        #{operato,jdbcType=VARCHAR},
+      </if>
+      <if test="actDate != null" >
+        #{actDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snow.eurekaprovider.v_server.model.WXActivity" >
+    update tb_wx_activity
+    <set >
+      <if test="actInfo != null" >
+        act_info = #{actInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operato != null" >
+        operato = #{operato,jdbcType=VARCHAR},
+      </if>
+      <if test="actDate != null" >
+        act_date = #{actDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where act_id = #{actId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snow.eurekaprovider.v_server.model.WXActivity" >
+    update tb_wx_activity
+    set act_info = #{actInfo,jdbcType=VARCHAR},
+      operato = #{operato,jdbcType=VARCHAR},
+      act_date = #{actDate,jdbcType=VARCHAR}
+    where act_id = #{actId,jdbcType=INTEGER}
+  </update>
+</mapper>

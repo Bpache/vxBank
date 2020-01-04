@@ -1,13 +1,13 @@
-# ¶Ë¿ÚºÅ
+# ç«¯å£å·
 server:
   port: 7301
-# ·şÎñÃû³Æ
+# æœåŠ¡åç§°
 spring:
   application:
     name: eureka-consumer
-# ·şÎñ×¢²áÓë·¢ÏÖÏà¹ØÅäÖÃ
+# æœåŠ¡æ³¨å†Œä¸å‘ç°ç›¸å…³é…ç½®
 eureka:
   client:
-    # ×¢²áÖĞĞÄµØÖ·
+    # æ³¨å†Œä¸­å¿ƒåœ°å€
     serviceUrl:
-      defaultZone: http://localhost:7101/eureka/
+      defaultZone: http://192.168.220.1:7101/eureka
