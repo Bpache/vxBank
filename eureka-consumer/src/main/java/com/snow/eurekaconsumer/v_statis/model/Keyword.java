@@ -12,13 +12,16 @@ public class Keyword{
 
     private Integer keySum;
 
+    private Integer type;
+
     private Integer pageNum;//页码
     private Integer pageSize;//每页显示条数
 
-    public Keyword(Integer kid, String keyName, Integer keySum) {
+    public Keyword(Integer kid, String keyName, Integer keySum,Integer type) {
         this.kid = kid;
         this.keyName = keyName;
         this.keySum = keySum;
+        this.type=type;
     }
 
     public Keyword() {
@@ -47,6 +50,14 @@ public class Keyword{
 
     public void setKeySum(Integer keySum) {
         this.keySum = keySum;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getPageNum() {

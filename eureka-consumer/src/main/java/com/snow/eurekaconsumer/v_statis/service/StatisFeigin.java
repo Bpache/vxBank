@@ -1,6 +1,8 @@
 package com.snow.eurekaconsumer.v_statis.service;
 
+import com.snow.eurekaconsumer.v_ai.model.AI;
 import com.snow.eurekaconsumer.v_statis.model.Keyword;
+import com.snow.eurekaconsumer.v_statis.model.UserVo;
 import com.snow.eurekaconsumer.v_statis.model.WxMenu;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -21,4 +23,7 @@ public interface StatisFeigin {
 
     @RequestMapping("/key/addOrUpdate")
     String addOrUpdate(Keyword keyword);
+
+    @RequestMapping("/user/number")
+    String userNumber(UserVo userVo);
 }
