@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/activity")
 public class WXActivityController {
     @Autowired
-    private WxActivityFeigin activityFeigin;
+    private WxActivityFeigin wxActivityFeigin;
 
     @RequestMapping("/add")
     public String activityAdd(String actInfo,String operato){
-        String actAdd = activityFeigin.activityAdd(actInfo,operato);
-        return actAdd;
+        String str = wxActivityFeigin.activityAdd(actInfo,operato);
+        return str;
     }
 
     @RequestMapping("/list")
     public String activitylist(){
-        String actList = activityFeigin.activitylist();
-        return actList;
+        String str = wxActivityFeigin.activitylist();
+        return str;
     }
 }
