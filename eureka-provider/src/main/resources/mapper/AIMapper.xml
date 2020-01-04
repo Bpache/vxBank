@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.snow.eurekaprovider.v_ai.mapper.AIMapper">
 
+  <cache type="com.snow.eurekaprovider.util.RedisCache" eviction="LRU" />
 
   <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_ai.model.AI">
     <constructor>
