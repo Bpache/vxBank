@@ -1,18 +1,72 @@
-# 端口号
+---
+# 高可用节点1的配置
 server:
+  # 端口号
   port: 7101
-# 服务注册相关配置
+spring:
+  # 节点1的标签
+  profiles: peer1
+  application:
+    # 服务名称，注意：所有节点的服务名称要保持一致
+    name: eureka-cluster
 eureka:
-  # 服务实例主机名
   instance:
-    hostname: localhost
+    # 服务实例主机名
+    hostname: peer1
   # 服务提供者配置
   client:
-    # registerWithEureka=false表示当前服务注册中心不在其他服务注册中心进行注册（当服务注册中心是单点而非高可用时的配置方式）
-    # fetchRegistry=false表示当前服务注册中心不获取其他服务注册中心的注册信息（当服务注册中心是单点而非高可用时的配置方式）
-    # 这两个配置，只有在当服务注册中心是单点配置时必然为false。
-    registerWithEureka: false
-    fetchRegistry: false
-    # 注册中心地址，即http://localhost:7101/eureka
+    # 进行注册（高可用配置、默认配置）
+    # registerWithEureka: true
+    # 获取注册信息（高可用配置、默认配置）
+    # fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 节点1向节点2/3进行服务注册
+      defaultZone: http://peer2:7102/eureka/,http://peer3:7103/eureka/
+---
+# 高可用节点2的配置
+server:
+  # 端口号
+  port: 7102
+spring:
+  # 节点1的标签
+  profiles: peer2
+  application:
+    # 服务名称，注意：所有节点的服务名称要保持一致
+    name: eureka-cluster
+eureka:
+  instance:
+    # 服务实例主机名
+    hostname: peer2
+  # 服务提供者配置
+  client:
+    # 进行注册（高可用配置、默认配置）
+    # registerWithEureka: true
+    # 获取注册信息（高可用配置、默认配置）
+    # fetchRegistry: true
+    serviceUrl:
+      # 节点2向节点1/3进行服务注册
+      defaultZone: http://peer1:7101/eureka/,http://peer3:7103/eureka/
+---
+# 高可用节点3的配置
+server:
+  # 端口号
+  port: 7103
+spring:
+  # 节点1的标签
+  profiles: peer3
+  application:
+    # 服务名称，注意：所有节点的服务名称要保持一致
+    name: eureka-cluster
+eureka:
+  instance:
+    # 服务实例主机名
+    hostname: peer3
+  # 服务提供者配置
+  client:
+    # 进行注册（高可用配置、默认配置）
+    # registerWithEureka: true
+    # 获取注册信息（高可用配置、默认配置）
+    # fetchRegistry: true
+    serviceUrl:
+      # 节点3向节点1/2进行服务注册
+      defaultZone: http://peer1:7101/eureka/,http://peer2:7102/eureka/

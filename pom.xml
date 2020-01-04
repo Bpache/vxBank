@@ -32,13 +32,6 @@
 
     <dependencies>
 
-        <!--引用公共模块共享给子模块使用-->
-        <dependency>
-            <groupId>com.snow</groupId>
-            <artifactId>vo</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!--eureka服务框架-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

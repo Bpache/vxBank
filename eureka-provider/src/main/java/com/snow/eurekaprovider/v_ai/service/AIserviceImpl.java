@@ -35,7 +35,7 @@ public class AIserviceImpl implements IAIservice {
     }
 
     @Override
-    @Cacheable(value = "AiCache",key="'load-'+#ai.pageNum+','+#ai.pageSize",unless = "#result.size()<0")
+    @Cacheable(value = "AiCache",key="'load-'+#ai.pageNum+','+#ai.pageSize",unless = "#result.size()<1")
     public List<AI> load(AI ai) {
         PageHelper.startPage(ai.getPageNum(),ai.getPageSize());
         List<AI> aiList = aiMapper.load(ai);

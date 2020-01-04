@@ -4,11 +4,12 @@ package com.snow.eurekaprovider.v_ai.controller;
 import com.snow.eurekaprovider.util.JsonData;
 import com.snow.eurekaprovider.v_ai.model.AI;
 import com.snow.eurekaprovider.v_ai.service.IAIservice;
+import com.snow.eurekaprovider.v_statis.model.Keyword;
+import com.snow.eurekaprovider.v_statis.service.IStatisService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
@@ -25,6 +26,9 @@ public class AiController {
 
     @Autowired
     private IAIservice aIservice;
+
+    @Autowired
+    private IStatisService statisService;
 
     private JsonData jd;
 
@@ -174,6 +178,41 @@ public class AiController {
         String str = "";
         String RequestMsg = tulinPost(msg);
         str = getReqMes(RequestMsg);
+
+     /*   AI aitest = new AI();
+        //设置关键字
+        aitest.setAiQuestion(msg);
+        //到AI表里查询是否有该关键字
+        List<AI> keys = aIservice.load(aitest);
+
+        Keyword keyword = new Keyword();
+        if(keys.size()<1){//ai表里面没有用户输入的关键字
+            keyword.setKeyName(msg);
+            //添加到关键字统计表
+            Keyword keyword2 = statisService.getByName(keyword.getKeyName());
+            if(keyword2 == null){
+                keyword.setKeyName(keyword.getKeyName());
+                keyword.setKeySum(1);
+                keyword.setType(0);
+                statisService.addKey(keyword);
+            }else{
+                statisService.updateKeySum(keyword.getKeyName());
+            }
+        }else{//ai表里面有用户输入的关键字
+            String keyname = keys.get(0).getAiQuestion();
+            Keyword keyword1 = statisService.getByName(keyname);//匹配ai表里面的关键字
+            if (keyword1 == null) {//关键字表如果没有 就加到关键字表
+                keyword.setKeyName(keyname);
+                keyword.setKeySum(1);
+                keyword.setType(1);
+                statisService.addKey(keyword);
+            } else {//如果有 关键字条数就加一
+                statisService.updateKeySum(keyname);
+            }
+        }
+*/
+
+
         return str;
     }
 
