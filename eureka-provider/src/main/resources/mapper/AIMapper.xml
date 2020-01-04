@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.snow.eurekaprovider.v_ai.mapper.AIMapper">
 
-
   <resultMap id="BaseResultMap" type="com.snow.eurekaprovider.v_ai.model.AI">
     <constructor>
       <idArg column="ai_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -45,6 +44,13 @@
     <include refid="Base_Column_List" />
     from tb_AI
     <where>1=1</where>
+    and ai_question like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question1 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question2 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question3 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question4 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    or ai_question5 like CONCAT(CONCAT('%',#{aiQuestion},'%'))
+    order by ai_id desc
   </select>
 
 

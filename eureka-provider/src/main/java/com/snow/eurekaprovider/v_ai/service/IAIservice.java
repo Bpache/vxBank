@@ -11,10 +11,11 @@ public interface IAIservice {
     int deleteByPrimaryKey(Integer aiId);
 
     int insert(AI record);
-
+    @Transactional(readOnly = true)
     AI selectByPrimaryKey(Integer aiId);
 
     int updateByPrimaryKey(AI record);
 
+    @Transactional(readOnly = true)
     List<AI> load(AI record);
 }

@@ -20,4 +20,8 @@ public interface KeywordMapper {
     int updateByPrimaryKey(Keyword record);
 
     List<Keyword> KeyList(Keyword keyword);
+
+    int update(String keyname);
+
+    Keyword getByName(String keyname);
 }

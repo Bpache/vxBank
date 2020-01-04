@@ -1,6 +1,6 @@
 package com.snow.eurekaprovider.v_statis.model;
 
-import com.snow.eurekaprovider.v_statis.mapper.PageModel;
+import com.snow.eurekaprovider.util.PageModel;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 

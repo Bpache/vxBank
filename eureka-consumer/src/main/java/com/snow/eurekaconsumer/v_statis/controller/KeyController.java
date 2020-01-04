@@ -1,5 +1,6 @@
 package com.snow.eurekaconsumer.v_statis.controller;
 
+import com.snow.eurekaconsumer.v_ai.model.AI;
 import com.snow.eurekaconsumer.v_statis.model.Keyword;
 import com.snow.eurekaconsumer.v_statis.service.StatisFeigin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,14 @@ public class KeyController {
     private StatisFeigin statisFeigin;
 
     @RequestMapping("/keylist")
-    public String keylist(Keyword keyword, @RequestParam int page,@RequestParam int rows){
-        keyword.setPageNum(page);
-        keyword.setKeySum(rows);
+    public String keylist(Keyword keyword){
         String list = statisFeigin.keyList(keyword);
         return list;
+    }
+
+    @RequestMapping("/addOrUpdate")
+    public String addOrUpdate(Keyword keyword){
+        String msg = statisFeigin.addOrUpdate(keyword);
+        return msg;
     }
 }

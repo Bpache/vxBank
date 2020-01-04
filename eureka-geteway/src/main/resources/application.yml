@@ -5,6 +5,9 @@ spring:
     name: geteway
 #����Zuul·�ɹ���
 zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 15000
   routes:
     #��zuul�����ģ��
     api-cons:
@@ -12,6 +15,13 @@ zuul:
       path: /cons/**
       #��������
       serviceId: eureka-consumer
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
 #��ע�����Ľ���ע��
 eureka:
   client:

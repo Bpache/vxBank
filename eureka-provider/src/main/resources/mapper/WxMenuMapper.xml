@@ -67,7 +67,7 @@
     insert into tb_wx_menu (id, Accno, Menuname, 
       Subname, clickrate, Seqno, 
       Menukey, Summary, Operato, 
-      Opertime, State, Isupdate, 
+      Opertime, State, Isupdate,
       Uptime, Upstate)
     values (#{id,jdbcType=INTEGER}, #{accno,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, 
       #{subname,jdbcType=VARCHAR}, #{clickrate,jdbcType=INTEGER}, #{seqno,jdbcType=INTEGER}, 

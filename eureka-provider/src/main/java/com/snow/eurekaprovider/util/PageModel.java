@@ -1,4 +1,4 @@
-package com.snow.eurekaprovider.v_statis.mapper;
+package com.snow.eurekaprovider.util;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
